@@ -53,6 +53,30 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Parte 1 - Setup</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#configurando-o-android-studio">Configurando o Android Studio</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#instalando">Instalando</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configurando-o-dispositivo-android">Configurando o dispositivo Android</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configurando-o-emulador">Configurando o emulador</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#concordando-com-os-termos-de-licensa">Concordando com os termos de licensa</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configurando-o-linux">Configurando o Linux</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configurando-a-web">Configurando a Web</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configurando-o-vs-code">Configurando o VS Code</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#instalando-o-plugin-do-flutter">Instalando o plugin do Flutter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#validando-a-instalacao-com-o-flutter-doctor">Validando a instalação com o Flutter Doctor</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -101,13 +125,41 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="instalando-o-flutter">Instalando o FLutter</h2>
+                <h1 id="instalando-o-flutter">Instalando o FLutter</h1>
 <p>Para começar a desenvolver o seu primeiro projeto em Flutter, acesse <a href="https://docs.flutter.dev/get-started/install">esse link</a> para baixar o Flutter.</p>
 <p>Você também precisará baixar o <a href="https://developer.android.com/studio">Android Studio</a>.</p>
 <p>Agora que você tem tudo baixado, utilize o seguinte comando:</p>
 <pre><code>flutter doctor
 </code></pre>
-<p>Esse comando checa o ambiente e <em>printa</em> no terminal a situação. Caso seja detectado algum problema, faça o download que ficou pendente.</p>
+<p>Esse comando checa o ambiente e <em>printa</em> no terminal a situação. Provavelmente você encontrará alguns problemas no terminal, mas é normal, pode ficar tranquilo. Vamos configurar o que falta.</p>
+<h2 id="configurando-o-android-studio">Configurando o Android Studio</h2>
+<h3 id="instalando">Instalando</h3>
+<p>Inicie o Android Studio, e baixe todas dependências recomendadas na instalação. Elas serão necessárias na hora de desenvolver o projeto. Em seguida, mais uma vez dê um <code>flutter doctor</code> e veja se está tudo ok. Caso não esteja, é recomendado que se dê o comando <code>flutter config --android-studio-dir &lt;directory&gt;</code> para encontrar o diretório que o Android Studio foi instalado.</p>
+<h3 id="configurando-o-dispositivo-android">Configurando o dispositivo Android</h3>
+<h3 id="configurando-o-emulador">Configurando o emulador</h3>
+<h3 id="concordando-com-os-termos-de-licensa">Concordando com os termos de licensa</h3>
+<p>Para poder utilizar o Flutter, é preciso aceitar as licenças do SDK. Após todas as instalações feitas acima, dê o seguinte comando:</p>
+<pre><code>flutter doctor --android-licenses
+</code></pre>
+<p>O esperado é que apareça no terminal os termos de cada licença do Android Studio. Leia com atenção antes de aceitá-los! Com isso, dê (pela última vez, espero) o comando <code>flutter doctor</code>. Se está tudo ok, parabéns! Você terminou de configurar o Android Studio! Caso contrário, <a href="https://www.youtube.com/watch?v=unhulzNJk9M&amp;ab_channel=NayaraGarcia">esse link pode te auxiliar</a></p>
+<h2 id="configurando-o-linux">Configurando o Linux</h2>
+<h2 id="configurando-a-web">Configurando a Web</h2>
+<h2 id="configurando-o-vs-code">Configurando o VS Code</h2>
+<p>Para começar, baixe o VS Code a partir do seguinte <a href="https://code.visualstudio.com/">link</a>.</p>
+<h3 id="instalando-o-plugin-do-flutter">Instalando o plugin do Flutter</h3>
+<ul>
+<li>Inicie o VS Code.</li>
+<li>Clique em <em>View -&gt; Command Palette</em>.</li>
+<li>Digite "install" e selecione <em>Extensions: Install Extensions</em>.</li>
+<li>Digite "Flutter" no campo de pesquisa, selecione <em>Flutter</em> e clique em <em>Install</em>. Pronto, plugin instalado!</li>
+</ul>
+<h3 id="validando-a-instalacao-com-o-flutter-doctor">Validando a instalação com o Flutter Doctor</h3>
+<ul>
+<li>Clique mais uma vez em <em>View -&gt; Command Palette</em>.</li>
+<li>Digite "doctor" e selecione <em>Flutter: Run Flutter Doctor</em>.</li>
+<li>Caso o output não detecte nenhum problema, incrível! Está tudo pronto!</li>
+</ul>
+<p>Sei que essa primeira parte é mais complicada mesmo, mas prometo que vai ficar mais interessante. A segunda parte do tutorial está disponível <a href="https://jonathansutton1.github.io/TecWeb-Projeto3/P2/.">aqui</a></p>
               
             </div>
           </div>
