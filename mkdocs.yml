@@ -1,0 +1,9 @@
+site_name: Tutorial de Flutter
+nav:
+    - Home: index.md
+    - Parte 1 - Setup: P1.md
+    - Parte 2 - Criando o nosso app: P2.md
+    - Parte 3 - Finalizando a página: P3.md
+    - Parte 4 - Tornando a página interativa: P4.md
+
+theme: readthedocs
