@@ -57,6 +57,12 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Parte 2 - Criando o nosso app</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#gerando-o-projeto-no-vs-code">Gerando o projeto no VS Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rodando-o-app">Rodando o app</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#primeiras-mudancas">Primeiras mudanças</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -101,8 +107,42 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="criando-o-nosso-primeiro-app">Criando o nosso primeiro app</h2>
+                <h1 id="criando-o-nosso-primeiro-app">Criando o nosso primeiro app</h1>
 <p>Agora que você já tem todas instalações necessárias, podemos começar a desenvolver o nosso primeiro projeto.</p>
+<h2 id="gerando-o-projeto-no-vs-code">Gerando o projeto no VS Code</h2>
+<p>Por questões de praticidade, nesse projeto, iremos utilizar o edito de textos VS Code. </p>
+<ul>
+<li>Inicie o VS Code.</li>
+<li>Clique em <em>View -&gt; Command Palette</em>.</li>
+<li>Digite "Flutter" e selecione <strong>Flutter: New Aplication Project</strong>.</li>
+<li>Selecione o diretório desejado para criar o projeto.</li>
+<li>Escolha o nome do projeto, como por exemplo, <em>meuapp</em>.</li>
+</ul>
+<p>Se o arquivo <em>main.dart</em> abrir, parabéns! O seu primeiro projeto em Flutter está criado.</p>
+<h2 id="rodando-o-app">Rodando o app</h2>
+<ul>
+<li>Procure o a barra de acesso do VS Code</li>
+<li>Selecione o dispositivo desejado. Caso não haja nenhum, selecione <strong>No devices</strong>.</li>
+<li>Rode o projeto na opção <em>Start Debugging</em>.</li>
+</ul>
+<p>Você deve ter visto uma tela parecida com essa no seu dispositivo. Vamos começar a programar, enfim!
+<img alt="exemplo" src="../img/example.png" /></p>
+<h2 id="primeiras-mudancas">Primeiras mudanças</h2>
+<p>Localize o seguinte trecho do arquivo <em>main.dart</em>:</p>
+<pre><code>const Text(
+              'You have pushed the button this many times:',
+            ),
+</code></pre>
+<p>Mude a palavra "pushed" para "clicked", da seguinte maneira:</p>
+<pre><code>const Text(
+              'You have clicked the button this many times:',
+            ),
+</code></pre>
+<p>Em seguida, salve o arquivo. A mudança deve ter sido feita, sem nenhum tipo de reload.</p>
+<hr />
+<p><strong>OBSERVAÇÃO</strong></p>
+<p>O Flutter oferece um sistema de desenvolvimento rápido chamado Stateful Hot Reload, que possui a habilidade de alterar um código sem ter que reiniciá-lo.</p>
+<hr />
               
             </div>
           </div>
