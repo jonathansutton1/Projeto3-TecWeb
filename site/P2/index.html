@@ -63,6 +63,14 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#primeiras-mudancas">Primeiras mudanças</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#finalmente-comecando-a-adicionar-funcionalidades">Finalmente, começando a adicionar funcionalidades!</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#observacoes-sobre-o-codigo-acima">Observações sobre o código acima:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adicionando-pacotes-externos">Adicionando pacotes externos</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -116,7 +124,7 @@
 <li>Clique em <em>View -&gt; Command Palette</em>.</li>
 <li>Digite "Flutter" e selecione <strong>Flutter: New Aplication Project</strong>.</li>
 <li>Selecione o diretório desejado para criar o projeto.</li>
-<li>Escolha o nome do projeto, como por exemplo, <em>meuapp</em>.</li>
+<li>Escolha o nome do projeto. Para esse tutorial, usaremos o nome <em>nomes_startups</em>.</li>
 </ul>
 <p>Se o arquivo <em>main.dart</em> abrir, parabéns! O seu primeiro projeto em Flutter está criado.</p>
 <h2 id="rodando-o-app">Rodando o app</h2>
@@ -143,6 +151,82 @@
 <p><strong>OBSERVAÇÃO</strong></p>
 <p>O Flutter oferece um sistema de desenvolvimento rápido chamado Stateful Hot Reload, que possui a habilidade de alterar um código sem ter que reiniciá-lo.</p>
 <hr />
+<h2 id="finalmente-comecando-a-adicionar-funcionalidades">Finalmente, começando a adicionar funcionalidades!</h2>
+<p>Para começar a entender mais sobre a linguagem Flutter, substitua todo código no arquivo <em>main.dart</em> pelo seguinte código:</p>
+<pre><code>// Copyright 2018 The Flutter team. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Welcome to Flutter'),
+        ),
+        body: const Center(
+          child: Text('Hello World'),
+        ),
+      ),
+    );
+  }
+}
+
+</code></pre>
+<p>Esse código simplesmente printa um <code>Hello World</code> na tela inicial do app.</p>
+<h3 id="observacoes-sobre-o-codigo-acima">Observações sobre o código acima:</h3>
+<ul>
+<li>Esse código gera um <a href="https://material.io/guidelines">App Material</a>. Para aplicativos de web e mobile, é recomendado que os aplicativos tenham essa configuração, e geralmente são mais usados.</li>
+<li>Como você pode observar, o método <code>main()</code> utiliza a flecha (<code>=&gt;</code>) como notação. Para funções ou métodos de uma linha só, utilize sempre essa flecha.</li>
+<li>A classe <code>MyApp</code> extende (herda) )um tal de <code>StatelessWidget</code>. Essa classe torna o próprio app em um widget. Ao programar utilizando Flutter, é preciso saber que quase tudo é um widget, inclusive o alinhamento, layout, etc.</li>
+<li>O widget <code>Scaffold</code> implementa a estrutura do layout visual da tela. Em apps Materiais, ele é usado com o widget <code>MaterialApp</code>. Para cada nova tela que será feita, o widget <code>Scaffold</code> é acionado, enquanto o outro é feito apenas uma vez.</li>
+</ul>
+<h2 id="adicionando-pacotes-externos">Adicionando pacotes externos</h2>
+<p>Localize o arquivo <em>pubsec.yaml</em> e adicione a seguinte linha no seu arquivo:</p>
+<pre><code>dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+</code></pre>
+<p>Adicione em uma linha o seguinte código: <code>english_words: ^4.0.0</code>. Você deve estar se perguntando o que é esse tal de <em>english_words</em>. Bom, é um pacote que contém algumas palavras em inglês, e outras funções importantes. Esse pacote será importante para o nosso projeto. Caso queira ver alguns outros pacotes, dê uma olhada <a href="https://pub.dev/">nesse link</a>. Se tudo correr conforme o esperado, você deve ver um output no seu código contendo as seguintes linhas:</p>
+<pre><code>[nomes_startups] flutter pub get
+Running &quot;flutter pub get&quot; in nomes_startups...                      3.2s
+exit code 0
+</code></pre>
+<p>Isso significa que o pacote foi incluso no seu projeto! Adicione agora no arquivo <em>main.dart</em>, perto dos imports:</p>
+<pre><code>import 'package:english_words/english_words.dart';            #linha a ser incluída
+import 'package:flutter/material.dart';
+</code></pre>
+<p>Com os imports prontos, que tal adicionarmos essa funcionalidadade na nossa tela? Substitua os seguintes trechos de código:</p>
+<pre><code class="language-dart">class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final wordPair = WordPair.random();             #linha adicionada para gerar palavras aleatorias!
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Welcome to Flutter'),
+        ),
+        body: Center(                              #essas 2 linhas devem ser adicionadas no lugar da
+          child: Text(wordPair.asPascalCase),      #que printa Hello, World!
+        ),
+      ),
+    );
+</code></pre>
+<p>A partir de agora, a tela do seu emulador deve conter algo parecido com isso:</p>
+<p><img alt="exemplo" src="../img/example2.png" /></p>
+<p>Cada vez que você salvar a página <em>main.dart</em>, um novo nome deve aparecer na tela. Essa é a funcionalidade do tal do <em>english_words</em>! Lembre-se que para isso ser possível, o aplicativo precisa estar rodando, que nem foi descrito no começo dessa etapa. Agora que temos a criação do nosso aplicativo encaminhada, vamos para a <a href="https://jonathansutton1.github.io/TecWeb-Projeto3/P3/">3a parte do tutorial</a>, onde terminaremos o desenvolvimento.</p>
               
             </div>
           </div>
