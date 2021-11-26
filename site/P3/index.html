@@ -61,6 +61,10 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Parte 3 - Finalizando a página</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#adicionando-widgets">Adicionando Widgets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#criando-uma-barra-de-deslocamento">Criando uma barra de deslocamento</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -101,12 +105,64 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="finalizando-a-pagina">Finalizando a página</h2>
+                <h1 id="finalizando-a-pagina">Finalizando a página</h1>
 <p>Vamos finalizar o nosso aplicativo. Com a base que temos, basta disponibilizarmos mais alguns nomes na tela para completar a missão.</p>
 <h2 id="adicionando-widgets">Adicionando Widgets</h2>
-<p>sfaf</p>
-<h2 id="criando-uma-barra-de">Criando uma barra de</h2>
-<p>dagagdgd</p>
+<p>Há 2 maneiras de um <em>widget</em> ser definido:</p>
+<ul>
+<li><strong>Widgets com estados:</strong> Propriedades poderão ser alteradas ao longo do desenvolvimento do projeto, enquanto essa widget existir.</li>
+<li><strong>Widgets sem estados:</strong> Nenhuma propriedade poderá ser alterada, ou seja, são valores imutáveis.</li>
+</ul>
+<p>Tendo isso como base, vamos implementar um widget com estados (<em>Stateful Widget</em>), <code>RandomWords</code>, que cria a classe <code>_RandomWordsState</code>. Além disso, a classe <code>RandomWords</code> será usada como filha (herança) na classe <code>MyApp</code>.</p>
+<p>Para começar o nosso widget, abra novamente o arquivo <em>main.dart</em>, pule 2 linhas e digite a palavra <code>stful</code>. O VS Code irá te sugerir criar uma <em>Stateful Widget</em>, e então selecione a opção! Você irá se deparar com o seguinte código:</p>
+<pre><code class="language-dart">class  extends StatefulWidget {
+  const ({ Key? key }) : super(key: key);
+
+  @override
+  _State createState() =&gt; _State();
+}
+
+class _State extends State&lt;&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+
+    );
+  }
+}
+</code></pre>
+<p>Perceba que o editor já deixou selecionado na frente da palavra <code>class</code>. Isso acontece justamente para você definir o nome da sua classe, que no nosso caso se chamará <code>RandomWords</code> (conforme combinado). Perceba que a classe <code>_RandomWordsState</code> também foi criada após você colocar o nome! O <em>underscore</em> é imposto por padrão pelo Dart. Considere por esse sinal em classes do tipo <code>state</code> como uma boa prática. Suas classes devem estar assim:</p>
+<pre><code class="language-dart">class RandomWords extends StatefulWidget {
+  @override
+  _RandomWordsState createState() =&gt; _RandomWordsState();
+}
+
+class _RandomWordsState extends State&lt;RandomWords&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+</code></pre>
+<p>Altere o método <code>build()</code> com as seguintes linhas:</p>
+<pre><code class="language-dart">class _RandomWordsState extends State&lt;RandomWords&gt; {
+    @override
+    Widget build(BuildContext context) {
+      final wordPair = WordPair.random();   #Sorteando um n
+      return Text(wordPair.asPascalCase);
+    }
+  }
+</code></pre>
+<p>Para finalizar, no código inicial, altere o <code>child</code>. De <code>Text(wordPair.asPascalCase)</code> para <code>RandomWords()</code>. Lembrando que essa configuração que foi trocada já foi definida na nossa classe <code>_RandomWordsState</code>. O resultado na tela deve ser o mesmo de antes. Vamos, enfim, adicionar as mudanças.</p>
+<h2 id="criando-uma-barra-de-deslocamento">Criando uma barra de deslocamento</h2>
+<p>No último passo da etapa 3, vamos expandir a classe <code>_RandomWordsState</code> para ela disponibilizar vários nomes, ao invés de apenas um. Comece as mudanças criando uma lista de sugestões para salvar os pares de nomes gerados. Vamos também adicionar uma variável para aumentar a letra que aparece na tela.</p>
+<pre><code class="language-dart">class _RandomWordsState extends State&lt;RandomWords&gt; {
+  final _suggestions = &lt;WordPair&gt;[];
+  final _biggerFont = const TextStyle(fontSize: 18.0);
+  // ···
+}
+</code></pre>
+<p>O próximo passo será adicionar outra função! Vamos criar a <code>BuildSugestions()</code>, que criará a nossa <code>ListView()</code> (função que exibe as palavras).</p>
               
             </div>
           </div>
