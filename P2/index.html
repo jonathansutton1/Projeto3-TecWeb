@@ -137,12 +137,12 @@
 <img alt="exemplo" src="../img/example.png" /></p>
 <h2 id="primeiras-mudancas">Primeiras mudanças</h2>
 <p>Localize o seguinte trecho do arquivo <em>main.dart</em>:</p>
-<pre><code>const Text(
+<pre><code class="language-dart">const Text(
               'You have pushed the button this many times:',
             ),
 </code></pre>
 <p>Mude a palavra "pushed" para "clicked", da seguinte maneira:</p>
-<pre><code>const Text(
+<pre><code class="language-dart">const Text(
               'You have clicked the button this many times:',
             ),
 </code></pre>
@@ -153,7 +153,7 @@
 <hr />
 <h2 id="finalmente-comecando-a-adicionar-funcionalidades">Finalmente, começando a adicionar funcionalidades!</h2>
 <p>Para começar a entender mais sobre a linguagem Flutter, substitua todo código no arquivo <em>main.dart</em> pelo seguinte código:</p>
-<pre><code>// Copyright 2018 The Flutter team. All rights reserved.
+<pre><code class="language-dart">// Copyright 2018 The Flutter team. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
@@ -189,7 +189,7 @@ class MyApp extends StatelessWidget {
 </ul>
 <h2 id="adicionando-pacotes-externos">Adicionando pacotes externos</h2>
 <p>Localize o arquivo <em>pubsec.yaml</em> e adicione a seguinte linha no seu arquivo:</p>
-<pre><code>dependencies:
+<pre><code class="language-dart">dependencies:
   flutter:
     sdk: flutter
 
@@ -199,12 +199,12 @@ class MyApp extends StatelessWidget {
   cupertino_icons: ^1.0.2
 </code></pre>
 <p>Adicione em uma linha o seguinte código: <code>english_words: ^4.0.0</code>. Você deve estar se perguntando o que é esse tal de <em>english_words</em>. Bom, é um pacote que contém algumas palavras em inglês, e outras funções importantes. Esse pacote será importante para o nosso projeto. Caso queira ver alguns outros pacotes, dê uma olhada <a href="https://pub.dev/">nesse link</a>. Se tudo correr conforme o esperado, você deve ver um output no seu código contendo as seguintes linhas:</p>
-<pre><code>[nomes_startups] flutter pub get
+<pre><code class="language-dart">[nomes_startups] flutter pub get
 Running &quot;flutter pub get&quot; in nomes_startups...                      3.2s
 exit code 0
 </code></pre>
 <p>Isso significa que o pacote foi incluso no seu projeto! Adicione agora no arquivo <em>main.dart</em>, perto dos imports:</p>
-<pre><code>import 'package:english_words/english_words.dart';            #linha a ser incluída
+<pre><code class="language-dart">import 'package:english_words/english_words.dart';            #linha a ser incluída
 import 'package:flutter/material.dart';
 </code></pre>
 <p>Com os imports prontos, que tal adicionarmos essa funcionalidadade na nossa tela? Substitua os seguintes trechos de código:</p>
