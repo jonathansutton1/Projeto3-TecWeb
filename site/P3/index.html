@@ -64,6 +64,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#adicionando-widgets">Adicionando Widgets</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#criando-uma-barra-de-deslocamento">Criando uma barra de deslocamento</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#observacoes-sobre-o-codigo-acima">Observações sobre o código acima</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -148,7 +152,7 @@ class _RandomWordsState extends State&lt;RandomWords&gt; {
 <pre><code class="language-dart">class _RandomWordsState extends State&lt;RandomWords&gt; {
     @override
     Widget build(BuildContext context) {
-      final wordPair = WordPair.random();   #Sorteando um n
+      final wordPair = WordPair.random();   //Sorteando um n
       return Text(wordPair.asPascalCase);
     }
   }
@@ -163,6 +167,68 @@ class _RandomWordsState extends State&lt;RandomWords&gt; {
 }
 </code></pre>
 <p>O próximo passo será adicionar outra função! Vamos criar a <code>BuildSugestions()</code>, que criará a nossa <code>ListView()</code> (função que exibe as palavras).</p>
+<p>A classe <code>ListView()</code> possui um construtor, <code>ItemBuilder()</code>, que entra como uma função anônima. Essa função recebe 2 parâmetros:</p>
+<ul>
+<li><code>BuildContext</code>: passa o contexto para o construtor</li>
+<li>Iterador <code>i</code>: começa no 0 e vai aumentando o valor 2 vezes a cada vez que a função é chamada</li>
+</ul>
+<p>Vamos por a mão na massa! Adicione o método <code>_buildSugestions()</code> na nossa classe <code>_RandomWordsState</code>:</p>
+<pre><code class="language-dart">Widget _buildSuggestions() {
+  return ListView.builder(
+      padding: const EdgeInsets.all(16.0),
+      itemBuilder: /*1*/ (context, i) {
+        if (i.isOdd) return const Divider(); /*2*/
+
+        final index = i ~/ 2; /*3*/
+        if (index &gt;= _suggestions.length) {
+          _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+        }
+        return _buildRow(_suggestions[index]);
+      });
+}
+</code></pre>
+<h3 id="observacoes-sobre-o-codigo-acima">Observações sobre o código acima</h3>
+<ul>
+<li><strong>/<em>1</em>/:</strong> O <code>itemBuilder</code> é chamado a cada combinação de palavras,  e deixa cada sugestão na coluna <code>ListTitle</code>. Para colunas <strong>pares</strong>, a função adiciona uma coluna <code>ListTitle</code> por combinação. Para colunas <strong>ímpares</strong>, a função adiciona um uma widget divisora para separas as entradas visualmente. </li>
+<li><strong>/<em>2</em>/:</strong> Adiciona um widget divisor de um pixel de altura em <code>ListView</code>.</li>
+<li><strong>/<em>3</em>/:</strong> A operação <code>i ~/ 2</code> divide o i por 2, e retorno um resultado <strong>inteiro</strong>. Esse trecho, então, calcula o número de combinações na <code>ListView</code>, menos as widgets divisoras.</li>
+<li><strong>/<em>4</em>/:</strong>Caso você use todas palavras generadas, ele gera mais 10 novas e adiciona na lista de sugestões.</li>
+</ul>
+<p>Vamos adicionar agora o método para criar as linhas! O método <code>_buildRow</code>!</p>
+<pre><code class="language-dart">Widget _buildRow(WordPair pair) {
+  return ListTile(
+    title: Text(
+      pair.asPascalCase,
+      style: _biggerFont,
+    ),
+  );
+}
+</code></pre>
+<p>Mais uma vez na classe <code>_RandomWordsState</code>, vamos atualizar o método <code>_build()</code> para incorporar a lista de sugestões! Ao invés de apenas chamar a biblioteca, que nem estavamos fazendo até agora, a lista disponibilizará mais de um nome na tela. Substitua o método body:</p>
+<pre><code class="language-dart">@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text('Nomes para startups'),
+    ),
+    body: _buildSuggestions(),
+  );
+}
+</code></pre>
+<p>Para finalizar, vamos entrar na classe principal do app (<code>MyApp()</code>) para aplicar nossas mudanças.</p>
+<pre><code class="language-dart">class MyApp extends StatelessWidget {
+  // #docregion build
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Startup Name Generator',
+      home: RandomWords(),    //Mudamos o home para chamar a classe RandomWords(), que já contem dados como titulo, etc
+    );
+  }
+</code></pre>
+<p>Feito todos passos, o seu app deve ter uma cara assim:
+<img alt="exemplo" src="../img/example3.png" /></p>
+<p>Pronto! Nosso app está pronto! No próximo passo, vamos tornar essa página interativa. Como? Acesse <a href="https://jonathansutton1.github.io/TecWeb-Projeto3/P4/">esse link</a>.</p>
               
             </div>
           </div>
