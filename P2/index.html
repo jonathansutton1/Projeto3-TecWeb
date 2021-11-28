@@ -211,15 +211,15 @@ import 'package:flutter/material.dart';
 <pre><code class="language-dart">class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();             #linha adicionada para gerar palavras aleatorias!
+    final wordPair = WordPair.random();             //linha adicionada para gerar palavras aleatorias!
     return MaterialApp(
       title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Welcome to Flutter'),
         ),
-        body: Center(                              #essas 2 linhas devem ser adicionadas no lugar da
-          child: Text(wordPair.asPascalCase),      #que printa Hello, World!
+        body: Center(                              //essas 2 linhas devem ser adicionadas no lugar da
+          child: Text(wordPair.asPascalCase),      //que printa Hello, World!
         ),
       ),
     );
