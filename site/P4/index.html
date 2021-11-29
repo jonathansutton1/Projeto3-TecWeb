@@ -65,6 +65,10 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Parte 4 - Tornando a página interativa</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#adicionando-icones">Adicionando ícones</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deixando-o-app-interativo">Deixando o app interativo</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -101,7 +105,69 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="tornando-a-nossa-pagina-interativa">Tornando a nossa página interativa</h2>
+                <h1 id="tornando-a-nossa-pagina-interativa">Tornando a nossa página interativa</h1>
+<h2 id="adicionando-icones">Adicionando ícones</h2>
+<p>Agora que você tem uma tela com vários nomes, que tal adicionar uma funcionalidade interativa? Vamos adicionar o botão de <em>like</em> para cada linha. Adicione o dicionário <code>_saved</code> na classe <code>_RandomWordsState</code>, da seguinte maneira. Esse componente servirá para salvar as palavras curtidas.</p>
+<pre><code class="language-dart">class _RandomWordsState extends State&lt;RandomWords&gt; {
+  final _suggestions = &lt;WordPair&gt;[];
+  final _saved = &lt;WordPair&gt;{};     // ADICIONE ESSA LINHA
+  final _biggerFont = TextStyle(fontSize: 18.0);
+  ...
+}
+</code></pre>
+<p>Na widget <code>_buildRow</code>, adicione um check <code>alreadySaved</code>. Isso servirá para garantir que uma palavrá não será salva mais de uma vez.</p>
+<pre><code class="language-dart">Widget _buildRow(WordPair pair) {
+  final alreadySaved = _saved.contains(pair);  // ADICIONE ESSA LINHA
+  ...
+}
+</code></pre>
+<p>Vamos agora incluir os ícones de coração para definir as curtidas. De novo na widget <code>_buildRow</code>, adicione as seguintes linhas:</p>
+<pre><code class="language-dart">Widget _buildRow(WordPair pair) {
+  final alreadySaved = _saved.contains(pair);
+  return ListTile(
+    title: Text(
+      pair.asPascalCase,
+      style: _biggerFont,
+    ),
+    trailing: Icon(   // ADICIONE A PARTIR DAQUI
+      alreadySaved ? Icons.favorite : Icons.favorite_border,
+      color: alreadySaved ? Colors.red : null,
+      semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
+    ),                // ATÉ AQUI
+  );
+}
+</code></pre>
+<p>Experimente dar um hot reload no seu emulador! Os corações já devem estar aparecendo, mas não são interativos. Vamos então adicionar funcionalidades para mexer neles!
+<img alt="exemplo" src="../img/example4.png" /></p>
+<h2 id="deixando-o-app-interativo">Deixando o app interativo</h2>
+<p>Estamos quase terminando o tutorial! Aguente firme, vamos fazer uma última mudança. O objetivo final é criar uma funcionalidade para que o usuário consiga clicar nos corações, e escolha as palavras que goste mais. Para isso, vamos mudar a widget <code>_buildRow</code>. A idéia é fazer com que, quando uma palavra é acessada, a função chame o <code>setState()</code> para notificar a framework para mudar o estado.</p>
+<pre><code class="language-dart">Widget _buildRow(WordPair pair) {
+  final alreadySaved = _saved.contains(pair);
+  return ListTile(
+    title: Text(
+      pair.asPascalCase,
+      style: _biggerFont,
+    ),
+    trailing: Icon(
+      alreadySaved ? Icons.favorite : Icons.favorite_border,
+      color: alreadySaved ? Colors.red : null,
+      semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
+    ),
+    onTap: () {      // ADICIONE A PARTIR DAQUI
+      setState(() {
+        if (alreadySaved) {
+          _saved.remove(pair);
+        } else { 
+          _saved.add(pair); 
+        } 
+      });
+    },               // ATÉ AQUI
+  );
+}
+</code></pre>
+<p>Dê um hot reload. Deu certo? Você consegue escolher os nomes desejados? 
+<img alt="exemplo" src="../img/example5.png" /></p>
+<p>Meus parabéns! Você chegou ao fim do nosso tutorial! Disponibilizaremos alguns mais complexos caso você queira se aprofundar mais. Obrigado pela atenção! :)</p>
               
             </div>
           </div>
